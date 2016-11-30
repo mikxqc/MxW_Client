@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.labMainVersion = new System.Windows.Forms.Label();
             this.labFuncClose = new System.Windows.Forms.Label();
             this.labCredits = new System.Windows.Forms.Label();
+            this.labFuncSettings = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labMainVersion
@@ -39,7 +39,7 @@
             this.labMainVersion.AutoSize = true;
             this.labMainVersion.BackColor = System.Drawing.Color.Transparent;
             this.labMainVersion.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labMainVersion.ForeColor = System.Drawing.Color.White;
+            this.labMainVersion.ForeColor = System.Drawing.Color.Silver;
             this.labMainVersion.Location = new System.Drawing.Point(8, 480);
             this.labMainVersion.Name = "labMainVersion";
             this.labMainVersion.Size = new System.Drawing.Size(69, 13);
@@ -64,19 +64,32 @@
             this.labCredits.AutoSize = true;
             this.labCredits.BackColor = System.Drawing.Color.Transparent;
             this.labCredits.Font = new System.Drawing.Font("Verdana", 7F);
-            this.labCredits.ForeColor = System.Drawing.Color.White;
+            this.labCredits.ForeColor = System.Drawing.Color.Silver;
             this.labCredits.Location = new System.Drawing.Point(694, 480);
             this.labCredits.Name = "labCredits";
             this.labCredits.Size = new System.Drawing.Size(150, 12);
             this.labCredits.TabIndex = 2;
             this.labCredits.Text = "PAR MIKX | MXW.MIKX.CA";
             // 
+            // labFuncSettings
+            // 
+            this.labFuncSettings.AutoSize = true;
+            this.labFuncSettings.BackColor = System.Drawing.Color.Transparent;
+            this.labFuncSettings.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labFuncSettings.ForeColor = System.Drawing.Color.White;
+            this.labFuncSettings.Location = new System.Drawing.Point(798, 11);
+            this.labFuncSettings.Name = "labFuncSettings";
+            this.labFuncSettings.Size = new System.Drawing.Size(15, 13);
+            this.labFuncSettings.TabIndex = 3;
+            this.labFuncSettings.Text = "S";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImage = global::mxw_client.Properties.Resources.Main_Default;
             this.ClientSize = new System.Drawing.Size(850, 500);
+            this.Controls.Add(this.labFuncSettings);
             this.Controls.Add(this.labCredits);
             this.Controls.Add(this.labFuncClose);
             this.Controls.Add(this.labMainVersion);
@@ -94,6 +107,7 @@
         private System.Windows.Forms.Label labMainVersion;
         private System.Windows.Forms.Label labFuncClose;
         private System.Windows.Forms.Label labCredits;
+        private System.Windows.Forms.Label labFuncSettings;
     }
 }
 

@@ -14,7 +14,7 @@ namespace mxw_client
 {    
     public partial class Form1 : Form
     {
-        public static string version = "1.0.0a";
+        public static string version = "1.0.0";
         public static string build = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileBuildPart.ToString();
         public static string commit = ThisAssembly.Git.Commit;
         public static string branch = ThisAssembly.Git.Branch;
