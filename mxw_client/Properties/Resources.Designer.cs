@@ -69,5 +69,15 @@ namespace mxw_client.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Main_ItemLoaded {
+            get {
+                object obj = ResourceManager.GetObject("Main_ItemLoaded", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
