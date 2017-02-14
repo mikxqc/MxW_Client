@@ -10,7 +10,8 @@ namespace mxw_client.JsonLoader
 {
     class Items
     {
-        private static string url = @"https://mxw.mikx.ca/data/us/{0}/{1}.json";
+        private static string url = @"https://mxw.mikx.ca/data/{0}/{1}/{2}.json";
+        private static string region = Main.region;
         private static string realm = Main.realm;
 
         public class List
@@ -46,8 +47,8 @@ namespace mxw_client.JsonLoader
 
         public static string ItemName(int id)
         {
-            WebClient wc = new WebClient();
-            var str = wc.DownloadString(string.Format(url, realm, id));
+            WebClient wc = new WebClient() { Encoding = Encoding.UTF8 };
+            var str = wc.DownloadString(string.Format(url, region, realm, id));
             var x = JsonConvert.DeserializeObject<RootObject>(str);
 
             return x.name;
@@ -56,7 +57,7 @@ namespace mxw_client.JsonLoader
         public static string ItemIcon(int id)
         {
             WebClient wc = new WebClient();
-            var str = wc.DownloadString(string.Format(url, realm, id));
+            var str = wc.DownloadString(string.Format(url, region, realm, id));
             var x = JsonConvert.DeserializeObject<RootObject>(str);
 
             return x.icon;
@@ -65,7 +66,7 @@ namespace mxw_client.JsonLoader
         public static int ItemCount(int id)
         {          
             WebClient wc = new WebClient();
-            var str = wc.DownloadString(string.Format(url, realm, id));
+            var str = wc.DownloadString(string.Format(url, region, realm, id));
             var x = JsonConvert.DeserializeObject<RootObject>(str);
 
             return x.qty;
@@ -74,7 +75,7 @@ namespace mxw_client.JsonLoader
         public static int ItemMG(int id)
         {
             WebClient wc = new WebClient();
-            var str = wc.DownloadString(string.Format(url, realm, id));
+            var str = wc.DownloadString(string.Format(url, region, realm, id));
             var x = JsonConvert.DeserializeObject<RootObject>(str);
 
             return x.mag;
@@ -83,7 +84,7 @@ namespace mxw_client.JsonLoader
         public static int ItemMS(int id)
         {
             WebClient wc = new WebClient();
-            var str = wc.DownloadString(string.Format(url, realm, id));
+            var str = wc.DownloadString(string.Format(url, region, realm, id));
             var x = JsonConvert.DeserializeObject<RootObject>(str);
 
             return x.mas;
@@ -92,7 +93,7 @@ namespace mxw_client.JsonLoader
         public static int ItemMC(int id)
         {
             WebClient wc = new WebClient();
-            var str = wc.DownloadString(string.Format(url, realm, id));
+            var str = wc.DownloadString(string.Format(url, region, realm, id));
             var x = JsonConvert.DeserializeObject<RootObject>(str);
 
             return x.mac;
@@ -101,7 +102,7 @@ namespace mxw_client.JsonLoader
         public static int ItemMoG(int id)
         {
             WebClient wc = new WebClient();
-            var str = wc.DownloadString(string.Format(url, realm, id));
+            var str = wc.DownloadString(string.Format(url, region, realm, id));
             var x = JsonConvert.DeserializeObject<RootObject>(str);
 
             return x.avg;
@@ -110,7 +111,7 @@ namespace mxw_client.JsonLoader
         public static int ItemMoS(int id)
         {
             WebClient wc = new WebClient();
-            var str = wc.DownloadString(string.Format(url, realm, id));
+            var str = wc.DownloadString(string.Format(url, region, realm, id));
             var x = JsonConvert.DeserializeObject<RootObject>(str);
 
             return x.avs;
@@ -119,7 +120,7 @@ namespace mxw_client.JsonLoader
         public static int ItemMoC(int id)
         {
             WebClient wc = new WebClient();
-            var str = wc.DownloadString(string.Format(url, realm, id));
+            var str = wc.DownloadString(string.Format(url, region, realm, id));
             var x = JsonConvert.DeserializeObject<RootObject>(str);
 
             return x.avc;
@@ -128,7 +129,7 @@ namespace mxw_client.JsonLoader
         public static int ItemMiG(int id)
         {
             WebClient wc = new WebClient();
-            var str = wc.DownloadString(string.Format(url, realm, id));
+            var str = wc.DownloadString(string.Format(url, region, realm, id));
             var x = JsonConvert.DeserializeObject<RootObject>(str);
 
             return x.mig;
@@ -137,7 +138,7 @@ namespace mxw_client.JsonLoader
         public static int ItemMiS(int id)
         {
             WebClient wc = new WebClient();
-            var str = wc.DownloadString(string.Format(url, realm, id));
+            var str = wc.DownloadString(string.Format(url, region, realm, id));
             var x = JsonConvert.DeserializeObject<RootObject>(str);
 
             return x.mis;
@@ -146,7 +147,7 @@ namespace mxw_client.JsonLoader
         public static int ItemMiC(int id)
         {
             WebClient wc = new WebClient();
-            var str = wc.DownloadString(string.Format(url, realm, id));
+            var str = wc.DownloadString(string.Format(url, region, realm, id));
             var x = JsonConvert.DeserializeObject<RootObject>(str);
 
             return x.mic;

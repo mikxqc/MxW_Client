@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.labMainVersion = new System.Windows.Forms.Label();
             this.labFuncClose = new System.Windows.Forms.Label();
             this.labCredits = new System.Windows.Forms.Label();
             this.labFuncSettings = new System.Windows.Forms.Label();
-            this.comboBoxRealm = new System.Windows.Forms.ComboBox();
             this.labToken = new System.Windows.Forms.Label();
             this.textBoxIDSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -55,7 +55,22 @@
             this.labInfoMax = new System.Windows.Forms.Label();
             this.labInfoName = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.labItemWoWHead = new System.Windows.Forms.Label();
+            this.labItemTUJ = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.X = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UGOLD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.USILVER = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UCOPPER = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EQUAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AGOLD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ASILVER = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ACOPPER = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OWNER = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labNotFound = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // labMainVersion
@@ -91,7 +106,7 @@
             this.labCredits.ForeColor = System.Drawing.Color.Silver;
             this.labCredits.Location = new System.Drawing.Point(694, 480);
             this.labCredits.Name = "labCredits";
-            this.labCredits.Size = new System.Drawing.Size(150, 12);
+            this.labCredits.Size = new System.Drawing.Size(149, 12);
             this.labCredits.TabIndex = 2;
             this.labCredits.Text = "PAR MIKX | MXW.MIKX.CA";
             // 
@@ -106,16 +121,7 @@
             this.labFuncSettings.Size = new System.Drawing.Size(15, 13);
             this.labFuncSettings.TabIndex = 3;
             this.labFuncSettings.Text = "S";
-            // 
-            // comboBoxRealm
-            // 
-            this.comboBoxRealm.BackColor = System.Drawing.Color.Silver;
-            this.comboBoxRealm.FormattingEnabled = true;
-            this.comboBoxRealm.Location = new System.Drawing.Point(666, 7);
-            this.comboBoxRealm.Name = "comboBoxRealm";
-            this.comboBoxRealm.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxRealm.TabIndex = 4;
-            this.comboBoxRealm.SelectedIndexChanged += new System.EventHandler(this.comboBoxRealm_SelectedIndexChanged);
+            this.labFuncSettings.Click += new System.EventHandler(this.labFuncSettings_Click);
             // 
             // labToken
             // 
@@ -156,6 +162,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Enabled = false;
             this.label2.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Silver;
             this.label2.Location = new System.Drawing.Point(481, 43);
@@ -172,7 +179,7 @@
             this.labInfoTotalV.ForeColor = System.Drawing.Color.White;
             this.labInfoTotalV.Location = new System.Drawing.Point(178, 234);
             this.labInfoTotalV.Name = "labInfoTotalV";
-            this.labInfoTotalV.Size = new System.Drawing.Size(42, 16);
+            this.labInfoTotalV.Size = new System.Drawing.Size(41, 16);
             this.labInfoTotalV.TabIndex = 51;
             this.labInfoTotalV.Text = "Total";
             this.labInfoTotalV.Visible = false;
@@ -389,19 +396,156 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Location = new System.Drawing.Point(112, 106);
+            this.pictureBox1.Location = new System.Drawing.Point(115, 106);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(64, 64);
             this.pictureBox1.TabIndex = 53;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Visible = false;
             // 
+            // labItemWoWHead
+            // 
+            this.labItemWoWHead.AutoSize = true;
+            this.labItemWoWHead.BackColor = System.Drawing.Color.Transparent;
+            this.labItemWoWHead.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labItemWoWHead.ForeColor = System.Drawing.Color.Red;
+            this.labItemWoWHead.Location = new System.Drawing.Point(26, 155);
+            this.labItemWoWHead.Name = "labItemWoWHead";
+            this.labItemWoWHead.Size = new System.Drawing.Size(58, 12);
+            this.labItemWoWHead.TabIndex = 54;
+            this.labItemWoWHead.Text = "WoWHead";
+            this.labItemWoWHead.Visible = false;
+            this.labItemWoWHead.Click += new System.EventHandler(this.labItemWoWHead_Click);
+            // 
+            // labItemTUJ
+            // 
+            this.labItemTUJ.AutoSize = true;
+            this.labItemTUJ.BackColor = System.Drawing.Color.Transparent;
+            this.labItemTUJ.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labItemTUJ.ForeColor = System.Drawing.Color.Gold;
+            this.labItemTUJ.Location = new System.Drawing.Point(201, 155);
+            this.labItemTUJ.Name = "labItemTUJ";
+            this.labItemTUJ.Size = new System.Drawing.Size(76, 12);
+            this.labItemTUJ.TabIndex = 55;
+            this.labItemTUJ.Text = "TheUndermine";
+            this.labItemTUJ.Visible = false;
+            this.labItemTUJ.Click += new System.EventHandler(this.labItemTUJ_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.ColumnHeadersVisible = false;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.QTY,
+            this.X,
+            this.UGOLD,
+            this.USILVER,
+            this.UCOPPER,
+            this.EQUAL,
+            this.AGOLD,
+            this.ASILVER,
+            this.ACOPPER,
+            this.OWNER});
+            this.dataGridView1.Location = new System.Drawing.Point(294, 70);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.dataGridView1.Size = new System.Drawing.Size(544, 396);
+            this.dataGridView1.TabIndex = 56;
+            this.dataGridView1.Visible = false;
+            // 
+            // QTY
+            // 
+            this.QTY.HeaderText = "Qté.";
+            this.QTY.Name = "QTY";
+            this.QTY.ReadOnly = true;
+            // 
+            // X
+            // 
+            this.X.HeaderText = "";
+            this.X.Name = "X";
+            this.X.ReadOnly = true;
+            // 
+            // UGOLD
+            // 
+            this.UGOLD.HeaderText = "";
+            this.UGOLD.Name = "UGOLD";
+            this.UGOLD.ReadOnly = true;
+            // 
+            // USILVER
+            // 
+            this.USILVER.HeaderText = "";
+            this.USILVER.Name = "USILVER";
+            this.USILVER.ReadOnly = true;
+            // 
+            // UCOPPER
+            // 
+            this.UCOPPER.HeaderText = "";
+            this.UCOPPER.Name = "UCOPPER";
+            this.UCOPPER.ReadOnly = true;
+            // 
+            // EQUAL
+            // 
+            this.EQUAL.HeaderText = "";
+            this.EQUAL.Name = "EQUAL";
+            this.EQUAL.ReadOnly = true;
+            // 
+            // AGOLD
+            // 
+            this.AGOLD.HeaderText = "";
+            this.AGOLD.Name = "AGOLD";
+            this.AGOLD.ReadOnly = true;
+            // 
+            // ASILVER
+            // 
+            this.ASILVER.HeaderText = "";
+            this.ASILVER.Name = "ASILVER";
+            this.ASILVER.ReadOnly = true;
+            // 
+            // ACOPPER
+            // 
+            this.ACOPPER.HeaderText = "";
+            this.ACOPPER.Name = "ACOPPER";
+            this.ACOPPER.ReadOnly = true;
+            // 
+            // OWNER
+            // 
+            this.OWNER.HeaderText = "Vendeur";
+            this.OWNER.Name = "OWNER";
+            this.OWNER.ReadOnly = true;
+            // 
+            // labNotFound
+            // 
+            this.labNotFound.AutoSize = true;
+            this.labNotFound.BackColor = System.Drawing.Color.Transparent;
+            this.labNotFound.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labNotFound.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.labNotFound.Location = new System.Drawing.Point(15, 103);
+            this.labNotFound.Name = "labNotFound";
+            this.labNotFound.Size = new System.Drawing.Size(266, 12);
+            this.labNotFound.TabIndex = 57;
+            this.labNotFound.Text = "Cet objet n\'existe pas dans notre copie de l\'enchère.";
+            this.labNotFound.Visible = false;
+            this.labNotFound.Click += new System.EventHandler(this.label3_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::mxw_client.Properties.Resources.Main_ItemLoaded;
+            this.BackgroundImage = global::mxw_client.Properties.Resources.Main_ItemLoaded1;
             this.ClientSize = new System.Drawing.Size(850, 500);
+            this.Controls.Add(this.labNotFound);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.labItemTUJ);
+            this.Controls.Add(this.labItemWoWHead);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.labInfoName);
             this.Controls.Add(this.labInfoTotalV);
@@ -424,16 +568,17 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxIDSearch);
             this.Controls.Add(this.labToken);
-            this.Controls.Add(this.comboBoxRealm);
             this.Controls.Add(this.labFuncSettings);
             this.Controls.Add(this.labCredits);
             this.Controls.Add(this.labFuncClose);
             this.Controls.Add(this.labMainVersion);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -449,7 +594,6 @@
         private System.Windows.Forms.TextBox textBoxIDSearch;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        public System.Windows.Forms.ComboBox comboBoxRealm;
         public System.Windows.Forms.Label labInfoTotalV;
         public System.Windows.Forms.Label labInfoTotal;
         public System.Windows.Forms.Label labInfoMinC;
@@ -468,6 +612,20 @@
         public System.Windows.Forms.Label labInfoMax;
         public System.Windows.Forms.Label labInfoName;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label labItemWoWHead;
+        private System.Windows.Forms.Label labItemTUJ;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QTY;
+        private System.Windows.Forms.DataGridViewTextBoxColumn X;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UGOLD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn USILVER;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UCOPPER;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EQUAL;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AGOLD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ASILVER;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ACOPPER;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OWNER;
+        public System.Windows.Forms.Label labNotFound;
     }
 }
 
