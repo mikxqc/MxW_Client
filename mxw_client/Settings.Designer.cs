@@ -157,6 +157,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.Settings_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Settings_MouseDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
