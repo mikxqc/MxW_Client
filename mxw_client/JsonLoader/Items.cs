@@ -42,6 +42,7 @@ namespace mxw_client.JsonLoader
             public int avc { get; set; }
             public int mac { get; set; }
             public int mic { get; set; }
+            public string gentime { get; set; }
             public List<List> list { get; set; }
         }
 
@@ -151,6 +152,15 @@ namespace mxw_client.JsonLoader
             var x = JsonConvert.DeserializeObject<RootObject>(str);
 
             return x.mic;
+        }
+
+        public static string ItemGenTime(int id)
+        {
+            WebClient wc = new WebClient();
+            var str = wc.DownloadString(string.Format(url, region, realm, id));
+            var x = JsonConvert.DeserializeObject<RootObject>(str);
+
+            return x.gentime;
         }
     }
 }

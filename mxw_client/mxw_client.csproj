@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="JsonLoader\Items.cs" />
+    <Compile Include="JsonLoader\Token.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>

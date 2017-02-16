@@ -69,6 +69,7 @@
             this.ACOPPER = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OWNER = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labNotFound = new System.Windows.Forms.Label();
+            this.labTokenValue = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -175,11 +176,11 @@
             // 
             this.labInfoTotalV.AutoSize = true;
             this.labInfoTotalV.BackColor = System.Drawing.Color.Transparent;
-            this.labInfoTotalV.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labInfoTotalV.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labInfoTotalV.ForeColor = System.Drawing.Color.White;
-            this.labInfoTotalV.Location = new System.Drawing.Point(178, 234);
+            this.labInfoTotalV.Location = new System.Drawing.Point(148, 238);
             this.labInfoTotalV.Name = "labInfoTotalV";
-            this.labInfoTotalV.Size = new System.Drawing.Size(41, 16);
+            this.labInfoTotalV.Size = new System.Drawing.Size(30, 12);
             this.labInfoTotalV.TabIndex = 51;
             this.labInfoTotalV.Text = "Total";
             this.labInfoTotalV.Visible = false;
@@ -192,9 +193,9 @@
             this.labInfoTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.labInfoTotal.Location = new System.Drawing.Point(39, 234);
             this.labInfoTotal.Name = "labInfoTotal";
-            this.labInfoTotal.Size = new System.Drawing.Size(44, 16);
+            this.labInfoTotal.Size = new System.Drawing.Size(88, 16);
             this.labInfoTotal.TabIndex = 50;
-            this.labInfoTotal.Text = "Total";
+            this.labInfoTotal.Text = "Génération";
             this.labInfoTotal.Visible = false;
             // 
             // labInfoMinC
@@ -281,7 +282,7 @@
             this.labInfoQtyV.BackColor = System.Drawing.Color.Transparent;
             this.labInfoQtyV.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labInfoQtyV.ForeColor = System.Drawing.Color.White;
-            this.labInfoQtyV.Location = new System.Drawing.Point(178, 218);
+            this.labInfoQtyV.Location = new System.Drawing.Point(147, 218);
             this.labInfoQtyV.Name = "labInfoQtyV";
             this.labInfoQtyV.Size = new System.Drawing.Size(37, 16);
             this.labInfoQtyV.TabIndex = 43;
@@ -536,12 +537,25 @@
             this.labNotFound.Visible = false;
             this.labNotFound.Click += new System.EventHandler(this.label3_Click);
             // 
+            // labTokenValue
+            // 
+            this.labTokenValue.AutoSize = true;
+            this.labTokenValue.BackColor = System.Drawing.Color.Transparent;
+            this.labTokenValue.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labTokenValue.ForeColor = System.Drawing.Color.Gold;
+            this.labTokenValue.Location = new System.Drawing.Point(342, 43);
+            this.labTokenValue.Name = "labTokenValue";
+            this.labTokenValue.Size = new System.Drawing.Size(41, 12);
+            this.labTokenValue.TabIndex = 58;
+            this.labTokenValue.Text = "999999";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::mxw_client.Properties.Resources.Main_ItemLoaded1;
             this.ClientSize = new System.Drawing.Size(850, 500);
+            this.Controls.Add(this.labTokenValue);
             this.Controls.Add(this.labNotFound);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.labItemTUJ);
@@ -627,6 +641,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ACOPPER;
         private System.Windows.Forms.DataGridViewTextBoxColumn OWNER;
         public System.Windows.Forms.Label labNotFound;
+        private System.Windows.Forms.Label labTokenValue;
     }
 }
 

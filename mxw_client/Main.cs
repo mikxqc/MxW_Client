@@ -108,6 +108,9 @@ namespace mxw_client
 
             //Read settings.json
             //Check if there was a last selected realm
+
+            //Load token price
+            labTokenValue.Text = JsonLoader.Token.TokenBuyout(region).ToString();
         }
 
         private void labFuncClose_Click(object sender, EventArgs e)
@@ -151,6 +154,7 @@ namespace mxw_client
             public int avc { get; set; }
             public int mac { get; set; }
             public int mic { get; set; }
+            public string gentime { get; set; }
             public List<List> list { get; set; }
         }
 
@@ -216,7 +220,7 @@ namespace mxw_client
                         labInfoMinS.Visible = true;
                         labInfoMinC.Visible = true;
                         labInfoQtyV.Visible = true;
-                        //labInfoTotalV.Visible = true;
+                        labInfoTotalV.Visible = true;
                         labItemWoWHead.Visible = true;
                         labItemTUJ.Visible = true;
 
@@ -235,6 +239,8 @@ namespace mxw_client
                         labInfoMinG.Text = imig.ToString();
                         labInfoMinS.Text = imis.ToString();
                         labInfoMinC.Text = imic.ToString();
+
+                        labInfoTotalV.Text = JsonLoader.Items.ItemGenTime(id);
 
                         FillList(id);
                     }
