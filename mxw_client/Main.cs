@@ -17,13 +17,14 @@ namespace mxw_client
 {
     public partial class Main : Form
     {
-        public static string version = "1.0.1";
-        public static string build = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileBuildPart.ToString();
+        public static string version = "1.1.1";
         public static string commit = ThisAssembly.Git.Commit;
         public static string branch = ThisAssembly.Git.Branch;
 
         public static string region = "";
         public static string realm = "";
+
+        public static bool debug = true;
 
         public class SettingsJson
         {
@@ -65,7 +66,7 @@ namespace mxw_client
             WebClient wc = new WebClient() { Encoding = Encoding.UTF8 };
             var str = wc.DownloadString("https://mxw.mikx.ca/data/updater.json");
             var u = JsonConvert.DeserializeObject<Updater>(str);
-            if (u.version != version)
+            if (u.version != version && !debug)
             {
                 System.Windows.Forms.Application.Exit();
                 if (File.Exists("MxW_Updater.exe")) { File.Delete("MxW_Updater.exe"); }
@@ -99,7 +100,7 @@ namespace mxw_client
             }           
             
             //Init base label
-            labMainVersion.Text = string.Format("MxW {0}.{1}({2})", version, build, commit);
+            labMainVersion.Text = string.Format("MxW {0}({1}/{2})", version, commit, branch);
 
             //Init base ui color
             //Item id search box color
@@ -165,15 +166,15 @@ namespace mxw_client
             {
                 if (textBoxIDSearch.Text != "")
                 {
-                    int id = Convert.ToInt32(textBoxIDSearch.Text);
-                    System.Net.HttpWebRequest request = null;
-                    System.Net.HttpWebResponse response = null;
-                    request = (System.Net.HttpWebRequest)System.Net.HttpWebRequest.Create(string.Format("https://mxw.mikx.ca/data/{0}/{1}/{2}.json", region, realm, id));
-                    request.Timeout = 30000;
+                    int id = Convert.ToInt32(textBoxIDSearch.Text);                    
+                    HttpWebRequest request = null;
+                    HttpWebResponse response = null;
+                    request = (HttpWebRequest)HttpWebRequest.Create(string.Format("https://mxw.mikx.ca/data/{0}/{1}/{2}.json", region, realm, id));
+                    request.Timeout = 5000;
                     int flag;
                     try
                     {
-                        response = (System.Net.HttpWebResponse)request.GetResponse();
+                        response = (HttpWebResponse)request.GetResponse();
                         flag = 1;
                     }
                     catch
@@ -224,7 +225,20 @@ namespace mxw_client
                         labItemWoWHead.Visible = true;
                         labItemTUJ.Visible = true;
 
-                        labInfoName.Text = JsonLoader.Items.ItemName(id);
+                        // Name lenght fix
+                        string fn = "";
+                        int maxnl = 35;
+                        string fnr = JsonLoader.Items.ItemName(id);
+                        int nl = fnr.Length;
+                        if (nl > maxnl)
+                        {
+                            fn = string.Format("{0}...", fnr.Substring(0, maxnl));
+                        } else
+                        {
+                            fn = fnr;
+                        }
+
+                        labInfoName.Text = fn;
                         pictureBox1.ImageLocation = String.Format(@"https://git.mikx.ca/mikx/wow-interface/raw/master/art/icons-png/{0}.png", JsonLoader.Items.ItemIcon(id));
 
                         labInfoQtyV.Text = iqty.ToString();
@@ -270,7 +284,8 @@ namespace mxw_client
                         labItemTUJ.Visible = false;
                         this.BackgroundImage = Properties.Resources.Main_Default;
                         labNotFound.Visible = true;
-                    }                 
+                    }
+                    request.Abort();
                 }
             }
         }

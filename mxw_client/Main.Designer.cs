@@ -151,13 +151,14 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Enabled = false;
             this.label1.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Silver;
-            this.label1.Location = new System.Drawing.Point(412, 43);
+            this.label1.Location = new System.Drawing.Point(411, 43);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 12);
+            this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 7;
-            this.label1.Text = "ENCHÈRE";
+            this.label1.Text = "Mon.MxW";
             // 
             // label2
             // 
@@ -202,11 +203,11 @@
             // 
             this.labInfoMinC.AutoSize = true;
             this.labInfoMinC.BackColor = System.Drawing.Color.Transparent;
-            this.labInfoMinC.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labInfoMinC.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labInfoMinC.ForeColor = System.Drawing.Color.Peru;
-            this.labInfoMinC.Location = new System.Drawing.Point(39, 426);
+            this.labInfoMinC.Location = new System.Drawing.Point(139, 330);
             this.labInfoMinC.Name = "labInfoMinC";
-            this.labInfoMinC.Size = new System.Drawing.Size(17, 16);
+            this.labInfoMinC.Size = new System.Drawing.Size(16, 16);
             this.labInfoMinC.TabIndex = 49;
             this.labInfoMinC.Text = "0";
             this.labInfoMinC.Visible = false;
@@ -215,11 +216,11 @@
             // 
             this.labInfoMoyC.AutoSize = true;
             this.labInfoMoyC.BackColor = System.Drawing.Color.Transparent;
-            this.labInfoMoyC.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labInfoMoyC.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labInfoMoyC.ForeColor = System.Drawing.Color.Peru;
-            this.labInfoMoyC.Location = new System.Drawing.Point(39, 362);
+            this.labInfoMoyC.Location = new System.Drawing.Point(139, 298);
             this.labInfoMoyC.Name = "labInfoMoyC";
-            this.labInfoMoyC.Size = new System.Drawing.Size(17, 16);
+            this.labInfoMoyC.Size = new System.Drawing.Size(16, 16);
             this.labInfoMoyC.TabIndex = 48;
             this.labInfoMoyC.Text = "0";
             this.labInfoMoyC.Visible = false;
@@ -228,24 +229,24 @@
             // 
             this.labInfoMaxC.AutoSize = true;
             this.labInfoMaxC.BackColor = System.Drawing.Color.Transparent;
-            this.labInfoMaxC.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labInfoMaxC.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labInfoMaxC.ForeColor = System.Drawing.Color.Peru;
-            this.labInfoMaxC.Location = new System.Drawing.Point(39, 298);
+            this.labInfoMaxC.Location = new System.Drawing.Point(139, 266);
             this.labInfoMaxC.Name = "labInfoMaxC";
-            this.labInfoMaxC.Size = new System.Drawing.Size(17, 16);
+            this.labInfoMaxC.Size = new System.Drawing.Size(24, 16);
             this.labInfoMaxC.TabIndex = 47;
-            this.labInfoMaxC.Text = "0";
+            this.labInfoMaxC.Text = "99";
             this.labInfoMaxC.Visible = false;
             // 
             // labInfoMinS
             // 
             this.labInfoMinS.AutoSize = true;
             this.labInfoMinS.BackColor = System.Drawing.Color.Transparent;
-            this.labInfoMinS.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labInfoMinS.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labInfoMinS.ForeColor = System.Drawing.Color.Silver;
-            this.labInfoMinS.Location = new System.Drawing.Point(39, 410);
+            this.labInfoMinS.Location = new System.Drawing.Point(110, 330);
             this.labInfoMinS.Name = "labInfoMinS";
-            this.labInfoMinS.Size = new System.Drawing.Size(17, 16);
+            this.labInfoMinS.Size = new System.Drawing.Size(16, 16);
             this.labInfoMinS.TabIndex = 46;
             this.labInfoMinS.Text = "0";
             this.labInfoMinS.Visible = false;
@@ -254,11 +255,11 @@
             // 
             this.labInfoMoyS.AutoSize = true;
             this.labInfoMoyS.BackColor = System.Drawing.Color.Transparent;
-            this.labInfoMoyS.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labInfoMoyS.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labInfoMoyS.ForeColor = System.Drawing.Color.Silver;
-            this.labInfoMoyS.Location = new System.Drawing.Point(39, 346);
+            this.labInfoMoyS.Location = new System.Drawing.Point(110, 298);
             this.labInfoMoyS.Name = "labInfoMoyS";
-            this.labInfoMoyS.Size = new System.Drawing.Size(17, 16);
+            this.labInfoMoyS.Size = new System.Drawing.Size(16, 16);
             this.labInfoMoyS.TabIndex = 45;
             this.labInfoMoyS.Text = "0";
             this.labInfoMoyS.Visible = false;
@@ -267,13 +268,13 @@
             // 
             this.labInfoMaxS.AutoSize = true;
             this.labInfoMaxS.BackColor = System.Drawing.Color.Transparent;
-            this.labInfoMaxS.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labInfoMaxS.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labInfoMaxS.ForeColor = System.Drawing.Color.Silver;
-            this.labInfoMaxS.Location = new System.Drawing.Point(39, 282);
+            this.labInfoMaxS.Location = new System.Drawing.Point(110, 266);
             this.labInfoMaxS.Name = "labInfoMaxS";
-            this.labInfoMaxS.Size = new System.Drawing.Size(17, 16);
+            this.labInfoMaxS.Size = new System.Drawing.Size(24, 16);
             this.labInfoMaxS.TabIndex = 44;
-            this.labInfoMaxS.Text = "0";
+            this.labInfoMaxS.Text = "99";
             this.labInfoMaxS.Visible = false;
             // 
             // labInfoQtyV
@@ -306,11 +307,11 @@
             // 
             this.labInfoMinG.AutoSize = true;
             this.labInfoMinG.BackColor = System.Drawing.Color.Transparent;
-            this.labInfoMinG.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labInfoMinG.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labInfoMinG.ForeColor = System.Drawing.Color.Gold;
-            this.labInfoMinG.Location = new System.Drawing.Point(39, 394);
+            this.labInfoMinG.Location = new System.Drawing.Point(39, 330);
             this.labInfoMinG.Name = "labInfoMinG";
-            this.labInfoMinG.Size = new System.Drawing.Size(26, 16);
+            this.labInfoMinG.Size = new System.Drawing.Size(24, 16);
             this.labInfoMinG.TabIndex = 41;
             this.labInfoMinG.Text = "10";
             this.labInfoMinG.Visible = false;
@@ -321,7 +322,7 @@
             this.labInfoMin.BackColor = System.Drawing.Color.Transparent;
             this.labInfoMin.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labInfoMin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.labInfoMin.Location = new System.Drawing.Point(39, 378);
+            this.labInfoMin.Location = new System.Drawing.Point(38, 314);
             this.labInfoMin.Name = "labInfoMin";
             this.labInfoMin.Size = new System.Drawing.Size(89, 16);
             this.labInfoMin.TabIndex = 40;
@@ -332,11 +333,11 @@
             // 
             this.labInfoMoyG.AutoSize = true;
             this.labInfoMoyG.BackColor = System.Drawing.Color.Transparent;
-            this.labInfoMoyG.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labInfoMoyG.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labInfoMoyG.ForeColor = System.Drawing.Color.Gold;
-            this.labInfoMoyG.Location = new System.Drawing.Point(39, 330);
+            this.labInfoMoyG.Location = new System.Drawing.Point(39, 298);
             this.labInfoMoyG.Name = "labInfoMoyG";
-            this.labInfoMoyG.Size = new System.Drawing.Size(26, 16);
+            this.labInfoMoyG.Size = new System.Drawing.Size(24, 16);
             this.labInfoMoyG.TabIndex = 39;
             this.labInfoMoyG.Text = "10";
             this.labInfoMoyG.Visible = false;
@@ -347,7 +348,7 @@
             this.labInfoMoy.BackColor = System.Drawing.Color.Transparent;
             this.labInfoMoy.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labInfoMoy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.labInfoMoy.Location = new System.Drawing.Point(39, 314);
+            this.labInfoMoy.Location = new System.Drawing.Point(39, 282);
             this.labInfoMoy.Name = "labInfoMoy";
             this.labInfoMoy.Size = new System.Drawing.Size(55, 16);
             this.labInfoMoy.TabIndex = 38;
@@ -358,13 +359,13 @@
             // 
             this.labInfoMaxG.AutoSize = true;
             this.labInfoMaxG.BackColor = System.Drawing.Color.Transparent;
-            this.labInfoMaxG.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labInfoMaxG.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labInfoMaxG.ForeColor = System.Drawing.Color.Gold;
             this.labInfoMaxG.Location = new System.Drawing.Point(39, 266);
             this.labInfoMaxG.Name = "labInfoMaxG";
-            this.labInfoMaxG.Size = new System.Drawing.Size(26, 16);
+            this.labInfoMaxG.Size = new System.Drawing.Size(64, 16);
             this.labInfoMaxG.TabIndex = 37;
-            this.labInfoMaxG.Text = "10";
+            this.labInfoMaxG.Text = "9999999";
             this.labInfoMaxG.Visible = false;
             // 
             // labInfoMax
@@ -388,9 +389,9 @@
             this.labInfoName.ForeColor = System.Drawing.Color.White;
             this.labInfoName.Location = new System.Drawing.Point(18, 179);
             this.labInfoName.Name = "labInfoName";
-            this.labInfoName.Size = new System.Drawing.Size(51, 13);
+            this.labInfoName.Size = new System.Drawing.Size(59, 13);
             this.labInfoName.TabIndex = 52;
-            this.labInfoName.Text = "$NOM$";
+            this.labInfoName.Text = "$NAME$";
             this.labInfoName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labInfoName.Visible = false;
             // 
@@ -541,13 +542,13 @@
             // 
             this.labTokenValue.AutoSize = true;
             this.labTokenValue.BackColor = System.Drawing.Color.Transparent;
-            this.labTokenValue.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labTokenValue.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labTokenValue.ForeColor = System.Drawing.Color.Gold;
-            this.labTokenValue.Location = new System.Drawing.Point(342, 43);
+            this.labTokenValue.Location = new System.Drawing.Point(337, 42);
             this.labTokenValue.Name = "labTokenValue";
-            this.labTokenValue.Size = new System.Drawing.Size(41, 12);
+            this.labTokenValue.Size = new System.Drawing.Size(56, 13);
             this.labTokenValue.TabIndex = 58;
-            this.labTokenValue.Text = "999999";
+            this.labTokenValue.Text = "9999999";
             // 
             // Main
             // 
@@ -641,7 +642,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ACOPPER;
         private System.Windows.Forms.DataGridViewTextBoxColumn OWNER;
         public System.Windows.Forms.Label labNotFound;
-        private System.Windows.Forms.Label labTokenValue;
+        public System.Windows.Forms.Label labTokenValue;
     }
 }
 
