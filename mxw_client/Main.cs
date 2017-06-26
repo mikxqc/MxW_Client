@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using FluentFTP;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,17 +13,24 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace mxw_client
 {
     public partial class Main : Form
     {
-        public static string version = "1.1.1";
+        public static string version = "1.2.0b";
         public static string commit = ThisAssembly.Git.Commit;
         public static string branch = ThisAssembly.Git.Branch;
 
         public static string region = "";
         public static string realm = "";
+        public static string clientpath = "";
+        public static string ftphost = "";
+        public static string ftpuser = "";
+        public static string ftppass = "";
+        public static string ftppath = "";
+
 
         public static bool debug = true;
 
@@ -32,6 +40,18 @@ namespace mxw_client
             public string region { get; set; }
             public string realm { get; set; }
             public string server { get; set; }
+            public string clientpath { get; set; }
+            public string ftphost { get; set; }
+            public string ftpuser { get; set; }
+            public string ftppass { get; set; }
+            public string ftppath { get; set; }
+        }
+
+        public class BackupJson
+        {
+            public string date { get; set; }
+            public string time { get; set; }
+            public string archive { get; set; }
         }
 
         public class Updater
@@ -61,26 +81,78 @@ namespace mxw_client
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private NotifyIcon trayIcon;
+        private ContextMenu trayMenu;
+
+        private void OnExit(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void OnOpen(object sender, EventArgs e)
+        {
+            this.Show();
+        }
+
+        private void OnUpdate(object sender, EventArgs e)
+        {
+            ClientUpdate(true);         
+        }
+
+        private void ClientUpdate(bool notify)
         {
             WebClient wc = new WebClient() { Encoding = Encoding.UTF8 };
             var str = wc.DownloadString("https://mxw.mikx.ca/data/updater.json");
             var u = JsonConvert.DeserializeObject<Updater>(str);
             if (u.version != version && !debug)
             {
-                System.Windows.Forms.Application.Exit();
+                Application.Exit();
                 if (File.Exists("MxW_Updater.exe")) { File.Delete("MxW_Updater.exe"); }
                 wc.DownloadFile("https://mxw.mikx.ca/release/MxW_Updater.exe", "MxW_Updater.exe");
-                System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
+                Process pProcess = new System.Diagnostics.Process();
                 pProcess.StartInfo.FileName = @"MxW_Updater.exe";
                 pProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
                 pProcess.StartInfo.CreateNoWindow = true;
                 pProcess.Start();
             }
+            else
+            {
+                if (notify)
+                {
+                    MessageBox.Show("Vous utilisez la version la plus récente de MxW.");
+                }              
+            }
+        }
+
+        private void mDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.Show();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            if (clientpath != "")
+            {
+                timerBackup.Enabled = true;
+            }
+
+            trayMenu = new ContextMenu();
+            trayMenu.MenuItems.Add("Ouvrir", OnOpen);
+            trayMenu.MenuItems.Add("Mise à jour", OnUpdate);
+            trayMenu.MenuItems.Add("Fermer", OnExit);
+
+            notifyIcon1.Text = "MxW "+Main.version+"("+ Main.commit + ")";
+            notifyIcon1.Icon = Properties.Resources.favicon;
+
+            notifyIcon1.ContextMenu = trayMenu;
+            notifyIcon1.Visible = true;
+
+            ClientUpdate(false);
 
             this.BackgroundImage = Properties.Resources.Main_Default;
             if (!File.Exists("settings.json"))
             {
+                WebClient wc = new WebClient();
                 wc.DownloadFile("https://mxw.mikx.ca/data/settings_client.json", "settings.json");
             }
 
@@ -96,6 +168,11 @@ namespace mxw_client
                 {
                     region = j.region;
                     realm = j.realm;
+                    clientpath = j.clientpath;
+                    ftppath = j.ftppath;
+                    ftphost = j.ftphost;
+                    ftpuser = j.ftpuser;
+                    ftppass = j.ftppass;
                 }
             }           
             
@@ -116,7 +193,7 @@ namespace mxw_client
 
         private void labFuncClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Hide();
         }
 
         private void comboBoxRealm_SelectedIndexChanged(object sender, EventArgs e)
@@ -185,7 +262,7 @@ namespace mxw_client
                     if (flag == 1)
                     {
                         labNotFound.Visible = false;
-                        this.BackgroundImage = Properties.Resources.Main_ItemLoaded1;                     
+                        this.BackgroundImage = Properties.Resources.Main_ItemLoaded;                     
                         ///////////////////////////////
                         //Get item info from web json
                         int iqty = JsonLoader.Items.ItemCount(id);
@@ -391,6 +468,167 @@ namespace mxw_client
         private void label3_Click_1(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(string.Format("https://theunderminejournal.com/#{0}/{1}/item/{2}", region, realm, textBoxIDSearch.Text));
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            Backup back = new Backup();
+            back.Show();
+        }
+
+        private void timerBackup_Tick(object sender, EventArgs e)
+        {
+            FtpClient ftp = new FtpClient(Main.ftphost);
+            ftp.Credentials = new System.Net.NetworkCredential(Main.ftpuser, Main.ftppass);
+            ftp.Connect();
+
+            string user = ftpuser.Substring(ftpuser.LastIndexOf('_') + 1);          
+            string hour = DateTime.Now.Hour.ToString();
+            string minute = DateTime.Now.Minute.ToString();
+            string day = DateTime.Now.Day.ToString();
+            string month = DateTime.Now.Month.ToString();
+            string year = DateTime.Now.Year.ToString();
+            IO.ClearDir("tmp");
+            IO.CreateSample(@"tmp\"+string.Format("{0}_wtf_{1}.{2}.{3}.{4}.{5}.mxw",user,month,day,year,hour,minute), "", Main.clientpath + @"\WTF");
+
+            ftp.UploadFile(@"tmp\" + string.Format("{0}_wtf_{1}.{2}.{3}.{4}.{5}.mxw", user, month, day, year, hour, minute),@"backup/"+ string.Format("{0}_wtf_{1}.{2}.{3}.{4}.{5}.mxw", user, month, day, year, hour, minute));
+
+            string fm = "";
+            string pe = "";
+            switch (DateTime.Now.Month)
+            {
+                case 1:
+                    fm = "Janvier";
+                    break;
+                case 2:
+                    fm = "Février";
+                    break;
+                case 3:
+                    fm = "Mars";
+                    break;
+                case 4:
+                    fm = "Avril";
+                    break;
+                case 5:
+                    fm = "Mai";
+                    break;
+                case 6:
+                    fm = "Juin";
+                    break;
+                case 7:
+                    fm = "Juillet";
+                    break;
+                case 8:
+                    fm = "Août";
+                    break;
+                case 9:
+                    fm = "Septembre";
+                    break;
+                case 10:
+                    fm = "Octobre";
+                    break;
+                case 11:
+                    fm = "Novembre";
+                    break;
+                case 12:
+                    fm = "Décembre";
+                    break;
+            }
+
+            switch (DateTime.Now.Hour)
+            {
+                case 1:
+                    pe = "am";
+                    break;
+                case 2:
+                    pe = "am";
+                    break;
+                case 3:
+                    pe = "am";
+                    break;
+                case 4:
+                    pe = "am";
+                    break;
+                case 5:
+                    pe = "am";
+                    break;
+                case 6:
+                    pe = "am";
+                    break;
+                case 7:
+                    pe = "am";
+                    break;
+                case 8:
+                    pe = "am";
+                    break;
+                case 9:
+                    pe = "am";
+                    break;
+                case 10:
+                    pe = "am";
+                    break;
+                case 11:
+                    pe = "am";
+                    break;
+                case 12:
+                    pe = "pm";
+                    break;
+                case 13:
+                    pe = "pm";
+                    break;
+                case 14:
+                    pe = "pm";
+                    break;
+                case 15:
+                    pe = "pm";
+                    break;
+                case 16:
+                    pe = "pm";
+                    break;
+                case 17:
+                    pe = "pm";
+                    break;
+                case 18:
+                    pe = "pm";
+                    break;
+                case 19:
+                    pe = "pm";
+                    break;
+                case 20:
+                    pe = "pm";
+                    break;
+                case 21:
+                    pe = "pm";
+                    break;
+                case 22:
+                    pe = "pm";
+                    break;
+                case 23:
+                    pe = "pm";
+                    break;
+                case 24:
+                    pe = "am";
+                    break;
+
+            }
+
+            BackupJson bjson = new BackupJson()
+            {
+                date = string.Format("{0} {1} {2}",day,fm,year),
+                time = string.Format("{0}:{1}{2}", hour, Handler.Int.ZeroPad(DateTime.Now.Minute), pe),
+                archive = string.Format("{0}_wtf_{1}.{2}.{3}.{4}.{5}.mxw", user, month, day, year, hour, minute)
+            };
+
+            using (FileStream fs = File.Open(@"tmp\" + string.Format("{0}_wtf_{1}.{2}.{3}.{4}.{5}.json", user, month, day, year, hour, minute), FileMode.CreateNew))
+            using (StreamWriter sw = new StreamWriter(fs))
+            using (JsonWriter jw = new JsonTextWriter(sw))
+            {
+                jw.Formatting = Newtonsoft.Json.Formatting.Indented;
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Serialize(jw, bjson);
+            }
+
+            ftp.UploadFile(@"tmp\" + string.Format("{0}_wtf_{1}.{2}.{3}.{4}.{5}.json", user, month, day, year, hour, minute), @"backup/" + string.Format("{0}_wtf_{1}.{2}.{3}.{4}.{5}.json", user, month, day, year, hour, minute));
         }
     }
 }
