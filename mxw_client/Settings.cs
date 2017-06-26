@@ -21,6 +21,11 @@ namespace mxw_client
             public string region { get; set; }
             public string realm { get; set; }
             public string server { get; set; }
+            public string clientpath { get; set; }
+            public string ftphost { get; set; }
+            public string ftpuser { get; set; }
+            public string ftppass { get; set; }
+            public string ftppath { get; set; }
         }
 
         public Settings()
@@ -80,8 +85,123 @@ namespace mxw_client
                 comboBoxRealm.Text = "Choisir un royaume...";
             }
 
+            if (CheckFtpHost())
+            {
+                RootObject jrealm = JsonConvert.DeserializeObject<RootObject>(File.ReadAllText("settings.json"));
+                tbFtpHost.Text = jrealm.ftphost;
+            }
+            else
+            {
+                
+            }
+
+            if (CheckFtpUser())
+            {
+                RootObject jrealm = JsonConvert.DeserializeObject<RootObject>(File.ReadAllText("settings.json"));
+                tbFtpUser.Text = jrealm.ftpuser;
+            }
+            else
+            {
+                
+            }
+
+            if (CheckFtpPass())
+            {
+                RootObject jrealm = JsonConvert.DeserializeObject<RootObject>(File.ReadAllText("settings.json"));
+                tbFtpMdp.Text = jrealm.ftppass;
+            }
+            else
+            {
+
+            }
+
+            if (CheckFtpPath())
+            {
+                RootObject jrealm = JsonConvert.DeserializeObject<RootObject>(File.ReadAllText("settings.json"));
+                tbFtpPath.Text = jrealm.ftppath;
+            }
+            else
+            {
+
+            }
+
+            if (CheckClientPath())
+            {
+                RootObject jrealm = JsonConvert.DeserializeObject<RootObject>(File.ReadAllText("settings.json"));
+                tbClientPath.Text = jrealm.clientpath;
+            }
+            else
+            {
+
+            }
+
             RootObject j = JsonConvert.DeserializeObject<RootObject>(File.ReadAllText("settings.json"));
             txtBoxServer.Text = j.server;
+        }
+
+        private bool CheckClientPath()
+        {
+            RootObject j = JsonConvert.DeserializeObject<RootObject>(File.ReadAllText("settings.json"));
+            if (j.clientpath == "")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private bool CheckFtpPath()
+        {
+            RootObject j = JsonConvert.DeserializeObject<RootObject>(File.ReadAllText("settings.json"));
+            if (j.ftppath == "")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private bool CheckFtpPass()
+        {
+            RootObject j = JsonConvert.DeserializeObject<RootObject>(File.ReadAllText("settings.json"));
+            if (j.ftppass == "")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private bool CheckFtpUser()
+        {
+            RootObject j = JsonConvert.DeserializeObject<RootObject>(File.ReadAllText("settings.json"));
+            if (j.ftpuser == "")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private bool CheckFtpHost()
+        {
+            RootObject j = JsonConvert.DeserializeObject<RootObject>(File.ReadAllText("settings.json"));
+            if (j.ftphost == "")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         private bool CheckRegion()
@@ -117,7 +237,11 @@ namespace mxw_client
                 first = false,
                 region = comboBoxRegion.SelectedItem.ToString(),
                 realm = comboBoxRealm.SelectedItem.ToString(),
-                server = txtBoxServer.Text
+                server = txtBoxServer.Text,
+                ftphost = tbFtpHost.Text,
+                ftpuser = tbFtpUser.Text,
+                ftppass = tbFtpMdp.Text,
+                ftppath = tbFtpPath.Text
             };
 
             File.Delete("settings.json");
@@ -129,6 +253,50 @@ namespace mxw_client
                 JsonSerializer serializer = new JsonSerializer();
                 serializer.Serialize(jw, sjson);
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            using (var fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    string[] files = Directory.GetFiles(fbd.SelectedPath);
+                    tbClientPath.Text = fbd.SelectedPath;
+                }
+            }
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.labMainVersion = new System.Windows.Forms.Label();
             this.labFuncClose = new System.Windows.Forms.Label();
@@ -70,6 +71,9 @@
             this.OWNER = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labNotFound = new System.Windows.Forms.Label();
             this.labTokenValue = new System.Windows.Forms.Label();
+            this.timerBackup = new System.Windows.Forms.Timer(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -80,7 +84,7 @@
             this.labMainVersion.BackColor = System.Drawing.Color.Transparent;
             this.labMainVersion.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labMainVersion.ForeColor = System.Drawing.Color.Silver;
-            this.labMainVersion.Location = new System.Drawing.Point(8, 480);
+            this.labMainVersion.Location = new System.Drawing.Point(12, 497);
             this.labMainVersion.Name = "labMainVersion";
             this.labMainVersion.Size = new System.Drawing.Size(69, 13);
             this.labMainVersion.TabIndex = 0;
@@ -92,7 +96,7 @@
             this.labFuncClose.BackColor = System.Drawing.Color.Transparent;
             this.labFuncClose.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labFuncClose.ForeColor = System.Drawing.Color.White;
-            this.labFuncClose.Location = new System.Drawing.Point(825, 11);
+            this.labFuncClose.Location = new System.Drawing.Point(842, 14);
             this.labFuncClose.Name = "labFuncClose";
             this.labFuncClose.Size = new System.Drawing.Size(15, 13);
             this.labFuncClose.TabIndex = 1;
@@ -105,7 +109,7 @@
             this.labCredits.BackColor = System.Drawing.Color.Transparent;
             this.labCredits.Font = new System.Drawing.Font("Verdana", 7F);
             this.labCredits.ForeColor = System.Drawing.Color.Silver;
-            this.labCredits.Location = new System.Drawing.Point(694, 480);
+            this.labCredits.Location = new System.Drawing.Point(709, 498);
             this.labCredits.Name = "labCredits";
             this.labCredits.Size = new System.Drawing.Size(149, 12);
             this.labCredits.TabIndex = 2;
@@ -117,7 +121,7 @@
             this.labFuncSettings.BackColor = System.Drawing.Color.Transparent;
             this.labFuncSettings.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labFuncSettings.ForeColor = System.Drawing.Color.White;
-            this.labFuncSettings.Location = new System.Drawing.Point(798, 11);
+            this.labFuncSettings.Location = new System.Drawing.Point(842, 42);
             this.labFuncSettings.Name = "labFuncSettings";
             this.labFuncSettings.Size = new System.Drawing.Size(15, 13);
             this.labFuncSettings.TabIndex = 3;
@@ -130,18 +134,19 @@
             this.labToken.BackColor = System.Drawing.Color.Transparent;
             this.labToken.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labToken.ForeColor = System.Drawing.Color.Silver;
-            this.labToken.Location = new System.Drawing.Point(296, 43);
+            this.labToken.Location = new System.Drawing.Point(307, 53);
             this.labToken.Name = "labToken";
             this.labToken.Size = new System.Drawing.Size(37, 12);
             this.labToken.TabIndex = 5;
             this.labToken.Text = "JETON";
+            this.labToken.Visible = false;
             // 
             // textBoxIDSearch
             // 
             this.textBoxIDSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxIDSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxIDSearch.ForeColor = System.Drawing.Color.White;
-            this.textBoxIDSearch.Location = new System.Drawing.Point(18, 85);
+            this.textBoxIDSearch.Location = new System.Drawing.Point(28, 94);
             this.textBoxIDSearch.Name = "textBoxIDSearch";
             this.textBoxIDSearch.Size = new System.Drawing.Size(257, 15);
             this.textBoxIDSearch.TabIndex = 6;
@@ -151,14 +156,14 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Enabled = false;
             this.label1.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Silver;
-            this.label1.Location = new System.Drawing.Point(411, 43);
+            this.label1.Location = new System.Drawing.Point(417, 53);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.Size = new System.Drawing.Size(63, 12);
             this.label1.TabIndex = 7;
-            this.label1.Text = "Mon.MxW";
+            this.label1.Text = "Sauvegarde";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -167,7 +172,7 @@
             this.label2.Enabled = false;
             this.label2.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Silver;
-            this.label2.Location = new System.Drawing.Point(481, 43);
+            this.label2.Location = new System.Drawing.Point(491, 53);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 12);
             this.label2.TabIndex = 8;
@@ -387,7 +392,7 @@
             this.labInfoName.BackColor = System.Drawing.Color.Transparent;
             this.labInfoName.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labInfoName.ForeColor = System.Drawing.Color.White;
-            this.labInfoName.Location = new System.Drawing.Point(18, 179);
+            this.labInfoName.Location = new System.Drawing.Point(28, 189);
             this.labInfoName.Name = "labInfoName";
             this.labInfoName.Size = new System.Drawing.Size(59, 13);
             this.labInfoName.TabIndex = 52;
@@ -398,7 +403,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Location = new System.Drawing.Point(115, 106);
+            this.pictureBox1.Location = new System.Drawing.Point(125, 116);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(64, 64);
             this.pictureBox1.TabIndex = 53;
@@ -411,7 +416,7 @@
             this.labItemWoWHead.BackColor = System.Drawing.Color.Transparent;
             this.labItemWoWHead.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labItemWoWHead.ForeColor = System.Drawing.Color.Red;
-            this.labItemWoWHead.Location = new System.Drawing.Point(26, 155);
+            this.labItemWoWHead.Location = new System.Drawing.Point(36, 165);
             this.labItemWoWHead.Name = "labItemWoWHead";
             this.labItemWoWHead.Size = new System.Drawing.Size(58, 12);
             this.labItemWoWHead.TabIndex = 54;
@@ -425,7 +430,7 @@
             this.labItemTUJ.BackColor = System.Drawing.Color.Transparent;
             this.labItemTUJ.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labItemTUJ.ForeColor = System.Drawing.Color.Gold;
-            this.labItemTUJ.Location = new System.Drawing.Point(201, 155);
+            this.labItemTUJ.Location = new System.Drawing.Point(211, 165);
             this.labItemTUJ.Name = "labItemTUJ";
             this.labItemTUJ.Size = new System.Drawing.Size(76, 12);
             this.labItemTUJ.TabIndex = 55;
@@ -455,7 +460,7 @@
             this.ASILVER,
             this.ACOPPER,
             this.OWNER});
-            this.dataGridView1.Location = new System.Drawing.Point(294, 70);
+            this.dataGridView1.Location = new System.Drawing.Point(304, 81);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
@@ -530,7 +535,7 @@
             this.labNotFound.BackColor = System.Drawing.Color.Transparent;
             this.labNotFound.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labNotFound.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.labNotFound.Location = new System.Drawing.Point(15, 103);
+            this.labNotFound.Location = new System.Drawing.Point(25, 112);
             this.labNotFound.Name = "labNotFound";
             this.labNotFound.Size = new System.Drawing.Size(266, 12);
             this.labNotFound.TabIndex = 57;
@@ -544,18 +549,44 @@
             this.labTokenValue.BackColor = System.Drawing.Color.Transparent;
             this.labTokenValue.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labTokenValue.ForeColor = System.Drawing.Color.Gold;
-            this.labTokenValue.Location = new System.Drawing.Point(337, 42);
+            this.labTokenValue.Location = new System.Drawing.Point(347, 52);
             this.labTokenValue.Name = "labTokenValue";
             this.labTokenValue.Size = new System.Drawing.Size(56, 13);
             this.labTokenValue.TabIndex = 58;
             this.labTokenValue.Text = "9999999";
             // 
+            // timerBackup
+            // 
+            this.timerBackup.Enabled = true;
+            this.timerBackup.Interval = 3600000;
+            this.timerBackup.Tick += new System.EventHandler(this.timerBackup_Tick);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Enabled = false;
+            this.label3.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Silver;
+            this.label3.Location = new System.Drawing.Point(555, 53);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 12);
+            this.label3.TabIndex = 59;
+            this.label3.Text = "Mon.MxW";
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
+            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.mDoubleClick);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::mxw_client.Properties.Resources.Main_ItemLoaded1;
-            this.ClientSize = new System.Drawing.Size(850, 500);
+            this.ClientSize = new System.Drawing.Size(870, 520);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.labTokenValue);
             this.Controls.Add(this.labNotFound);
             this.Controls.Add(this.dataGridView1);
@@ -591,6 +622,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
             this.Text = "Form1";
+            this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.Load += new System.EventHandler(this.Form1_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -643,6 +675,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn OWNER;
         public System.Windows.Forms.Label labNotFound;
         public System.Windows.Forms.Label labTokenValue;
+        private System.Windows.Forms.Timer timerBackup;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
     }
 }
 
